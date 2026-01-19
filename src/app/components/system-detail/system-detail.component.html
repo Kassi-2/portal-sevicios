@@ -1,0 +1,25 @@
+<div class="detail-container">
+  
+  <div class="image-column">
+    <img src="assets/fondo-facultad.jpg" alt="Edificio">
+  </div>
+
+  <div class="info-column">
+    <a routerLink="/" class="back-link">← Volver</a>
+
+    <h1>{{ system?.title }}</h1>
+    
+    <p class="description">{{ system?.description }}</p>
+
+    <div class="manual-section" *ngIf="system?.manualUrl">
+      <a [href]="system?.manualUrl" target="_blank" class="manual-link">
+        📎 Manual de Usuario
+      </a>
+    </div>
+
+    <a [href]="system?.url" target="_blank" class="cta-button">
+      Ir al Inicio ↗
+    </a>
+  </div>
+
+</div>

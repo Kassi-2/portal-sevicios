@@ -1,0 +1,108 @@
+<nav class="navbar" [class.navbar-hidden]="isNavbarHidden">
+  
+  <div class="nav-brand">
+    <img src="assets/logo-fouch.png" alt="Logo UChile" class="logo"> 
+    <span class="divider">|</span>
+    <h1>Portal de Sistemas</h1>
+  </div>
+  
+  <div class="nav-menu">
+    <button class="menu-trigger" (click)="toggleMenu()">
+      Sistemas ▼
+    </button>
+
+    <div class="dropdown-content" *ngIf="isMenuOpen">
+      <a *ngFor="let item of systems" 
+         (click)="scrollToSection(item.id)" 
+         class="dropdown-item"
+         style="cursor: pointer;">
+         {{ item.title }}
+      </a>
+    </div>
+  </div>
+</nav>
+
+<main class="main-container">
+
+  <div class="background-slider">
+    <div *ngFor="let img of backgroundImages; let i = index"
+         class="bg-slide"
+         [class.active]="i === currentBgIndex"
+         [style.background-image]="'url(' + img + ')'">
+    </div>
+    <div class="overlay"></div>
+  </div>
+  
+  <div class="carousel-wrapper">
+    
+    <button 
+      class="nav-btn prev" 
+      *ngIf="canScrollLeft" 
+      (click)="scrollCarousel('left')">
+      &#10094; 
+    </button>
+
+    <div class="carousel-track" #carousel (scroll)="checkScroll()">
+      <div class="carousel-item" *ngFor="let item of systems">
+        <app-system-card 
+          [system]="item"
+          (click)="scrollToSection(item.id)">
+        </app-system-card>
+      </div>
+    </div>
+
+    <button 
+      class="nav-btn next" 
+      *ngIf="canScrollRight" 
+      (click)="scrollCarousel('right')">
+      &#10095; 
+    </button>
+
+  </div>
+
+  <div class="slider-dots">
+    <span *ngFor="let img of backgroundImages; let i = index"
+          class="dot"
+          [class.active]="i === currentBgIndex"
+          (click)="selectBackground(i)">
+    </span>
+  </div>
+
+</main>
+
+<div class="details-container">
+  
+  <section *ngFor="let item of systems" 
+           [id]="item.id" 
+           class="system-detail-section">
+    
+    <div class="content-wrapper">
+      <div class="image-column">
+        <img [src]="item.img || 'assets/fouch2.jpg'" 
+             alt="Vista del sistema {{ item.title }}">
+      </div>
+
+      <div class="info-column">
+        <h2>{{ item.title }}</h2>
+        <p class="desc">{{ item.description }}</p>
+        
+        <div class="actions">
+          <a *ngIf="item.manualUrl" 
+            [href]="item.manualUrl" 
+            target="_blank" 
+            class="link-manual">
+            
+            📄 
+            
+            <span class="text-underline">Ver Manual</span>
+          </a>
+          
+          <a [href]="item.url" target="_blank" class="btn-primary">
+            Ir al Sitio ↗
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</div>
