@@ -30,6 +30,7 @@ export class HomeComponent {
   currentBgIndex = 0;
   private bgInterval: any;
 
+  //Lista de sistemas con detalles de cada uno (id, título, descripción, link(url), manual e imagen).
   systems: System[] = [
       {
         id: 'control-pagos',
@@ -57,7 +58,7 @@ export class HomeComponent {
       {
         id: 'sac',
         title: 'Sistema de Seguimiento de compras',
-        description: 'Sistema de Seguimiento de compras y abastecimiento.',
+        description: 'Plataforma creada para digitalizar y centralizar la gestión de solicitudes de bienes y servicios en la Facultad, eliminando la dependencia de planillas Excel y correos dispersos. El sistema permite a los funcionarios ingresar requerimientos y realizar un seguimiento en tiempo real de su estado a través de un flujo de aprobación definido por etapas, asegurando la transparencia, el orden administrativo y la trazabilidad de cada compra desde su solicitud hasta la recepción del producto.',
         url: 'https://sac.deaodontouchile.cl/login',
         img: 'assets/sac.jpg',
       },
@@ -76,6 +77,19 @@ export class HomeComponent {
         url: 'http://revalidaciones.odontouchileacademico.cl/',
         manualUrl: 'assets/manuales/manual-revalidaciones.pdf',
         img: 'assets/revalidaciones.JPG',
+      },
+
+      {
+        id: 'comunicaciones',
+        title: 'Sistema de Gestión de Solicitudes DIRCOM',
+        description: 'Plataforma desarrollada para centralizar y gestionar las solicitudes de servicios de comunicación de la Dirección de Comunicaciones (DIRCOM) de la Facultad, reemplazando el correo electrónico tradicional por un canal eficiente. El sistema centraliza la recepción de requerimientos, gestiona el inventario de recursos y coordina el calendario de eventos, ofreciendo un dashboard de control que permite visualizar la carga de trabajo y asegurar el cumplimiento de los protocolos institucionales.',
+        url: 'http://solicitudes.odontouchileacademico.cl/',
+        manuales: [
+    { nombre: 'Manual Usuario', url: 'assets/manual-usuario-comunicaciones.pdf' },
+    { nombre: 'Manual Administrador', url: 'assets/manual-admin-comunicaciones.pdf' }
+  ],
+
+        img: 'assets/comunicaciones.jpg',
       }
     ];
     

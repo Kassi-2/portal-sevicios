@@ -3,6 +3,10 @@ export interface System {
   title: string;
   description: string;
   url: string;
-  manualUrl?: string;
+  manualUrl?: string; 
+  manuales?: { 
+    nombre: string; 
+    url: string; 
+  }[];
   img?: string;
 }
