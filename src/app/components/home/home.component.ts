@@ -85,8 +85,8 @@ export class HomeComponent {
         description: 'Plataforma desarrollada para centralizar y gestionar las solicitudes de servicios de comunicación de la Dirección de Comunicaciones (DIRCOM) de la Facultad, reemplazando el correo electrónico tradicional por un canal eficiente. El sistema centraliza la recepción de requerimientos, gestiona el inventario de recursos y coordina el calendario de eventos, ofreciendo un dashboard de control que permite visualizar la carga de trabajo y asegurar el cumplimiento de los protocolos institucionales.',
         url: 'http://solicitudes.odontouchileacademico.cl/',
         manuales: [
-    { nombre: 'Manual Usuario', url: 'assets/manual-usuario-comunicaciones.pdf' },
-    { nombre: 'Manual Administrador', url: 'assets/manual-admin-comunicaciones.pdf' }
+    { nombre: 'Manual Usuario', url: 'assets/manuales/manual-usuario-comunicaciones.pdf' },
+    { nombre: 'Manual Administrador', url: 'assets/manuales/manual-admin-comunicaciones.pdf' }
   ],
 
         img: 'assets/comunicaciones.jpg',
