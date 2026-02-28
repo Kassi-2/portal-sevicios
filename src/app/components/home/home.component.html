@@ -1,0 +1,141 @@
+<nav class="navbar" [class.navbar-hidden]="isNavbarHidden">
+  
+  <div class="nav-brand">
+    <img src="assets/logo-fouch.png" alt="Logo UChile" class="logo"> 
+    <span class="divider">|</span>
+    <h1>Portal de Sistemas</h1>
+  </div>
+  
+  <div class="nav-menu">
+    <button class="menu-trigger" (click)="toggleMenu()">
+      Sistemas <span style="font-size: 0.8em; margin-left: 5px;">▼</span>
+    </button>
+
+    <div class="dropdown-content" *ngIf="isMenuOpen">
+      <a *ngFor="let item of systems" 
+         (click)="scrollToSection(item.id)" 
+         class="dropdown-item"
+         style="cursor: pointer;">
+         {{ item.title }}
+      </a>
+    </div>
+  </div>
+</nav>
+
+<main class="main-container">
+
+  <div class="background-slider">
+    <div *ngFor="let img of backgroundImages; let i = index"
+         class="bg-slide"
+         [class.active]="i === currentBgIndex"
+         [style.background-image]="'url(' + img + ')'">
+    </div>
+    <div class="overlay"></div>
+  </div>
+  
+  <div class="carousel-wrapper">
+    
+    <button 
+      class="nav-btn prev" 
+      *ngIf="canScrollLeft" 
+      (click)="scrollCarousel('left')">
+      &#10094; 
+    </button>
+
+    <div class="carousel-track" #carousel (scroll)="checkScroll()">
+      <div class="carousel-item" *ngFor="let item of systems">
+        <app-system-card 
+          [system]="item"
+          (click)="scrollToSection(item.id)">
+        </app-system-card>
+      </div>
+    </div>
+
+    <button 
+      class="nav-btn next" 
+      *ngIf="canScrollRight" 
+      (click)="scrollCarousel('right')">
+      &#10095; 
+    </button>
+
+  </div>
+
+  <div class="slider-dots">
+    <span *ngFor="let img of backgroundImages; let i = index"
+          class="dot"
+          [class.active]="i === currentBgIndex"
+          (click)="selectBackground(i)">
+    </span>
+  </div>
+
+</main>
+
+<div class="details-container">
+  
+  <section *ngFor="let item of systems" 
+           [id]="item.id" 
+           class="system-detail-section">
+    
+    <div class="content-wrapper">
+      <div class="image-column">
+        <img [src]="item.img || 'assets/fouch2.jpg'" 
+             alt="Vista del sistema {{ item.title }}">
+      </div>
+
+      <div class="info-column">
+        <h2>{{ item.title }}</h2>
+        <p class="desc">{{ item.description }}</p>
+        
+        <div class="actions">
+  
+  <div *ngIf="item.manuales && item.manuales.length > 0" class="manual-stack">
+    <a *ngFor="let manual of item.manuales" 
+       [href]="manual.url" 
+       target="_blank" 
+       class="link-manual mini">
+       
+       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="clip-icon">
+         <path stroke-linecap="round" stroke-linejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13" />
+       </svg>
+       
+       <span>{{ manual.nombre }}</span>
+    </a>
+  </div>
+
+  <a *ngIf="!item.manuales && item.manualUrl" 
+     [href]="item.manualUrl" 
+     target="_blank" 
+     class="link-manual">
+     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="clip-icon">
+       <path stroke-linecap="round" stroke-linejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13" />
+     </svg>
+     <span class="text-underline">Ver Manual</span>
+  </a>
+
+  <a [href]="item.url" target="_blank" class="btn-inicio">
+    Ir al Sitio <span class="arrow">↗</span>
+  </a>
+
+</div>
+      </div>
+    </div>
+
+  </section>
+</div>
+<footer class="app-footer">
+  <div class="footer-content">
+    
+    <div class="footer-info">
+      <h3>Facultad de Odontología</h3>
+      <p class="university">Universidad de Chile</p>
+      <p class="address">Olivos 943, Independencia, Santiago</p>
+    </div>
+
+    <div class="footer-badges">
+      <img src="assets/acreditacion-7.png" alt="Acreditación 7 Años" class="badge-img">
+      
+      <img src="assets/acreditacion-fouch.svg" alt="Logo CNA" class="badge-img cna-logo">
+    </div>
+
+  </div>
+</footer>
